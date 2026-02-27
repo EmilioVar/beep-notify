@@ -3,6 +3,7 @@ import { ToastOptions, BeepType } from "./types";
 import { playSound } from "./sound";
 
 export function toast({
+  title,
   message,
   type = "info",
   position = "bottom-right",
@@ -61,6 +62,19 @@ export function toast({
     textSpan.innerHTML = message;
   } else {
     textSpan.textContent = message;
+  }
+
+  if (title) {
+    const titleSpan = document.createElement("div");
+    titleSpan.className = "beep-title";
+
+    if (options?.html) {
+      titleSpan.innerHTML = title;
+    } else {
+      titleSpan.textContent = title;
+    }
+
+    textSpan.prepend(titleSpan);
   }
 
   // Montamos todo
@@ -177,12 +191,12 @@ export function toast({
 function getIconSVG(type: BeepType): string {
   switch (type) {
     case "success":
-      return `<svg style="color:#65a30d" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>`;
+      return `<svg style="color:#65a30d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" fill-rule="evenodd" d="M256 42.667C138.18 42.667 42.667 138.18 42.667 256S138.18 469.334 256 469.334S469.334 373.82 469.334 256S373.821 42.667 256 42.667m0 384c-94.105 0-170.666-76.561-170.666-170.667S161.894 85.334 256 85.334S426.667 161.894 426.667 256S350.106 426.667 256 426.667m80.336-246.886l30.167 30.167l-131.836 132.388l-79.083-79.083l30.166-30.167l48.917 48.917z"/></svg>`;
     case "error":
     case "danger":
       return `<svg style="color:#dc2626" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>`;
     case "info":
-      return `<svg style="color:#0284c7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>`;
+      return `<svg style="color:#0284c7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></g></svg>`;
     case "warning":
       return `<svg style="color:#ea580c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/><line x1="12" y1="8" x2="12" y2="14"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg>`;
     default:

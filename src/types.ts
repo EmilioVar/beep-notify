@@ -3,6 +3,7 @@ import { ContainerPosition } from "./ui/Containers/ToastContainer";
 export type BeepType = "success" | "error" | "info" | "warning" | "danger";
 
 export interface ToastOptions {
+    title?: string;
     message: string;
     type?: BeepType;
     position?: ContainerPosition;
