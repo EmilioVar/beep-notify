@@ -111,6 +111,11 @@ html[data-theme="dark"] {
   transition: transform 0.40s ease, margin-top 0.40s ease;
 }
 
+.beep-title {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
 html[data-theme="dark"] .beep-notification {
   box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   border-color: #444;
@@ -269,8 +274,8 @@ html[data-theme="dark"] .beep-actions .beep-reject:hover {
 }
 
 .beep-icon svg {
-  width: 20px;             /* tamaño del icono */
-  height: 20px;
+  width: 24px;             /* tamaño del icono */
+  height: 24px;
   flex-shrink: 0;
   display: block;          /* elimina espacios extra */
   stroke: currentColor;    /* toma el color de la notificación */
